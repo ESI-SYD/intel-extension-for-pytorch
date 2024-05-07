@@ -1549,17 +1549,16 @@ class _one_api_help:
         CUR_DIR = os.path.dirname(__file__)
         self.__default_root = os.path.dirname(CUR_DIR)
 
-        self.check_onednn_cfg()
         self.check_dpcpp_cfg()
         self.check_onemkl_cfg()
 
     def check_onemkl_cfg(self):
         if self.__onemkl_root is None:
-            raise "Didn't detect mkl root. Please source <oneapi_dir>/mkl/<version>/env/vars.sh "
+            raise Exception("Didn't detect mkl root. Please source <oneapi_dir>/mkl/<version>/env/vars.sh ")
 
     def check_onednn_cfg(self):
         if self.__onednn_root is None:
-            raise "Didn't detect dnnl root. Please source <oneapi_dir>/dnnl/<version>/env/vars.sh "
+            raise Exception("Didn't detect dnnl root. Please source <oneapi_dir>/dnnl/<version>/env/vars.sh ")
         else:
             warnings.warn(
                 "This extension has static linked onednn library. Please attaction to \
@@ -1568,7 +1567,7 @@ class _one_api_help:
 
     def check_dpcpp_cfg(self):
         if self.__dpcpp_root is None:
-            raise "Didn't detect dpcpp root. Please source <oneapi_dir>/compiler/<version>/env/vars.sh "
+            raise Exception("Didn't detect dpcpp root. Please source <oneapi_dir>/compiler/<version>/env/vars.sh ")
 
     def get_default_include_dir(self):
         return [os.path.join(self.__default_root, "include")]
